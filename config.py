@@ -1,0 +1,26 @@
+import random
+
+WIDTH = 1000
+HEIGHT = 600
+TXT_SIZE = 32
+CAPTION = "SORTING ANIMATION"
+FPS = 60
+
+WHITE = (255, 255, 255)
+BLACK = (0, 0, 0)
+GRAY = (200, 200, 200)
+COLOR_FOR_POINTED_I = (255, 100, 100)
+COLOR_FOR_POINTED_J = (200, 100, 100)
+COLOR_FOR_SWAPED = (100, 100, 255)
+
+# ARRAY_TEST = [2, 1, 3, 8, 7, 15, 6, 5, 9, 10]
+ARRAY_TEST = [random.randint(0, 40) for i in range(1, 10)]
+
+ARRAY_LEN = len(ARRAY_TEST)
+
+X_SIDE = WIDTH // ARRAY_LEN
+BLOCK_SIZE_Y = HEIGHT // max(ARRAY_TEST)
+
+
+def mix():
+    random.shuffle(ARRAY_TEST)
