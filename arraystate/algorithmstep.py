@@ -71,6 +71,7 @@ class AlgorithmStepper:
                 self.swap_ij = (j, j - 1)
                 self.swap()
                 yield
+                self.swap_ij = (0, 0)
                 j -= 1
 
     def random_sort(self):
@@ -91,9 +92,9 @@ class AlgorithmStepper:
     def draw_value_color(self, i, value, color):
         pygame.draw.rect(self.animation.screen, color,
                          (
-                             i * X_SIDE + 5,
+                             i * X_SIDE + X_SIDE // 10,
                              HEIGHT - (BLOCK_SIZE_Y * value),
-                             X_SIDE - 5,
+                             X_SIDE - X_SIDE // 10,
                              HEIGHT
                          )
                          )

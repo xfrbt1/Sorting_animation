@@ -31,7 +31,11 @@ class SortingAnimation:
 
     def txt_info(self):
         title = self.font.render(f'{self.algorithm_state.title}', True, BLACK)
-        self.screen.blit(title, (WIDTH-300, 10))
+        iterations = self.font.render(f'iterations: {self.iteration}', True, BLACK)
+        array_len = self.font.render(f'array len: {ARRAY_LEN}', True, BLACK)
+        self.screen.blit(title, (20, 10))
+        self.screen.blit(iterations, (20, 55))
+        self.screen.blit(array_len, (20, 75))
 
     def check_event(self):
         for event in pygame.event.get():
@@ -46,3 +50,6 @@ class SortingAnimation:
             self.txt_info()
             self.update()
             self.check_event()
+
+
+
