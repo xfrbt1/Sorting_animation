@@ -36,8 +36,8 @@ class AlgorithmStepper:
             return next(self.algorithm)
 
         except StopIteration:
+            time.sleep(3)
             self.process = False
-            time.sleep(2)
             self.animation.running = False
 
     def bubble_sort(self):
@@ -74,10 +74,19 @@ class AlgorithmStepper:
                 self.swap_ij = (0, 0)
                 j -= 1
 
-    def random_sort(self):
-        flag = True
+    def bogo_sort(self):
+        while True:
+            random.shuffle(self.array)
+            yield
 
-        while flag:
+            for i in range(len(self.array) - 1):
+                if self.array[i] > self.array[i + 1]:
+                    break
+            else:
+                break
+
+    def random_sort(self):
+        while True:
 
             self.swap_ij = (random.randint(0, len(self.array) - 1), random.randint(0, len(self.array) - 1))
             self.swap()
@@ -87,7 +96,11 @@ class AlgorithmStepper:
                 if self.array[i] > self.array[i + 1]:
                     break
             else:
-                flag = False
+                break
+
+    def my_sort(self):
+        for i in range(len(self.array)):
+            pass
 
     def draw_value_color(self, i, value, color):
         pygame.draw.rect(self.animation.screen, color,
@@ -105,7 +118,6 @@ class AlgorithmStepper:
 
     def draw_pointers(self):
         if self.pointers_ij[0] == self.pointers_ij[1]:
-            self.draw_value_color(self.pointers_ij[0], self.array[self.pointers_ij[0]], COLOR_FOR_POINTED_I)
             return
         if not self.process:
             return
@@ -130,14 +142,19 @@ class AlgorithmStepper:
             1: self.bubble_sort(),
             2: self.select_sort(),
             3: self.insert_sort(),
-            4: self.random_sort()
+            4: self.random_sort(),
+            5: self.bogo_sort(),
+            6: self.my_sort()
         }
 
         mapping_title = {
             1: 'BubbleSort - O(n^2)',
             2: 'SelectSort - O(n^2)',
             3: 'InsertSort - O(n^2)',
-            4: 'RandomSort - O(random_n)'
+            4: 'RandomSort - O(random_n)',
+            5: 'BogoSort - O(n * n!)',
+            6: 'MySort - O(do not know)'
+
         }
         self.algorithm = mapping[index]
         self.title = mapping_title[index]

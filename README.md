@@ -7,12 +7,12 @@ bubble sort, select sort, insert sort and random sort :)
 
 1. Bubble sort
 
-![img.png](images_for_read_me/bubblesort.png)
+![img.png](.github/assets/bubblesort.png)
 
 2. Select sort
 
-![img.png](images_for_read_me/selectsort.png)
+![img.png](.github/assets/selectsort.png)
 
 3. Insert sort
 
-![img.png](images_for_read_me/insertsort.png)
+![img.png](.github/assets/insertsort.png)

@@ -14,11 +14,6 @@ if __name__ == '__main__':
     animation = SortingAnimation(ARRAY_TEST, 3)
     animation.run()
 
-    mix()
-    animation = SortingAnimation(ARRAY_TEST, 4)
-    animation.run()
-
-
 
 
 
