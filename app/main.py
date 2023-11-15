@@ -1,5 +1,5 @@
 from animation.animation import SortingAnimation
-from config import *
+from config import mix, ARRAY_TEST
 
 if __name__ == '__main__':
     mix()

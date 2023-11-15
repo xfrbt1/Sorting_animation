@@ -1,7 +1,7 @@
 import pygame
 
-from arraystate.algorithmstep import AlgorithmStepper
-from config import *
+from app.config import *
+from app.arraystate.algorithmstep import AlgorithmStepper
 
 
 class SortingAnimation:

@@ -1,8 +1,8 @@
+from app.config import *
+
 import time
-
+import random
 import pygame
-
-from config import *
 
 
 class AlgorithmStepper:
