@@ -1,3 +1,4 @@
+from app.animation.animation import SortingAnimation
 from app.config import *
 
 import time
@@ -6,7 +7,7 @@ import pygame
 
 
 class AlgorithmStepper:
-    def __init__(self, animation, array, alg_index):
+    def __init__(self, animation: SortingAnimation, array: list, alg_index: int):
         self.title = None
         self.algorithm = None
         self.animation = animation
@@ -87,8 +88,10 @@ class AlgorithmStepper:
 
     def random_sort(self):
         while True:
-
-            self.swap_ij = (random.randint(0, len(self.array) - 1), random.randint(0, len(self.array) - 1))
+            self.swap_ij = (
+                random.randint(0, len(self.array) - 1),
+                random.randint(0, len(self.array) - 1),
+            )
             self.swap()
             yield
 
@@ -103,14 +106,16 @@ class AlgorithmStepper:
             pass
 
     def draw_value_color(self, i, value, color):
-        pygame.draw.rect(self.animation.screen, color,
-                         (
-                             i * X_SIDE + X_SIDE // 10,
-                             HEIGHT - (BLOCK_SIZE_Y * value),
-                             X_SIDE - X_SIDE // 10,
-                             HEIGHT
-                         )
-                         )
+        pygame.draw.rect(
+            self.animation.screen,
+            color,
+            (
+                i * X_SIDE + X_SIDE // 10,
+                HEIGHT - (BLOCK_SIZE_Y * value),
+                X_SIDE - X_SIDE // 10,
+                HEIGHT,
+            ),
+        )
 
     def draw_arrays_values(self):
         for i, value in enumerate(self.array):
@@ -121,40 +126,47 @@ class AlgorithmStepper:
             return
         if not self.process:
             return
-        self.draw_value_color(self.pointers_ij[0], self.array[self.pointers_ij[0]], COLOR_FOR_POINTED_I)
-        self.draw_value_color(self.pointers_ij[1], self.array[self.pointers_ij[1]], COLOR_FOR_POINTED_J)
+        self.draw_value_color(
+            self.pointers_ij[0], self.array[self.pointers_ij[0]], COLOR_FOR_POINTED_I
+        )
+        self.draw_value_color(
+            self.pointers_ij[1], self.array[self.pointers_ij[1]], COLOR_FOR_POINTED_J
+        )
 
     def draw_swap(self):
         if self.swap_ij[0] == self.swap_ij[1]:
             return
         if not self.process:
             return
-        self.draw_value_color(self.swap_ij[0], self.array[self.swap_ij[0]], COLOR_FOR_SWAPED)
-        self.draw_value_color(self.swap_ij[1], self.array[self.swap_ij[1]], COLOR_FOR_SWAPED)
+        self.draw_value_color(
+            self.swap_ij[0], self.array[self.swap_ij[0]], COLOR_FOR_SWAPED
+        )
+        self.draw_value_color(
+            self.swap_ij[1], self.array[self.swap_ij[1]], COLOR_FOR_SWAPED
+        )
 
     def draw(self):
         self.draw_arrays_values()
         self.draw_pointers()
         self.draw_swap()
 
-    def mapping_alg(self, index):
+    def mapping_alg(self, index: int):
         mapping = {
             1: self.bubble_sort(),
             2: self.select_sort(),
             3: self.insert_sort(),
             4: self.random_sort(),
             5: self.bogo_sort(),
-            6: self.my_sort()
+            6: self.my_sort(),
         }
 
         mapping_title = {
-            1: 'BubbleSort - O(n^2)',
-            2: 'SelectSort - O(n^2)',
-            3: 'InsertSort - O(n^2)',
-            4: 'RandomSort - O(random_n)',
-            5: 'BogoSort - O(n * n!)',
-            6: 'MySort - O(do not know)'
-
+            1: "BubbleSort - O(n^2)",
+            2: "SelectSort - O(n^2)",
+            3: "InsertSort - O(n^2)",
+            4: "RandomSort - O(random_n)",
+            5: "BogoSort - O(n * n!)",
+            6: "MySort - O(do not know)",
         }
         self.algorithm = mapping[index]
         self.title = mapping_title[index]

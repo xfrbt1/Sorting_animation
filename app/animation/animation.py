@@ -5,7 +5,7 @@ from app.arraystate.algorithmstep import AlgorithmStepper
 
 
 class SortingAnimation:
-    def __init__(self, ARRAY, ALG_INDEX):
+    def __init__(self, ARRAY: list, ALG_INDEX: int):
         pygame.init()
 
         self.iteration = 0
@@ -30,9 +30,9 @@ class SortingAnimation:
         self.algorithm_state.update()
 
     def txt_info(self):
-        title = self.font.render(f'{self.algorithm_state.title}', True, BLACK)
-        iterations = self.font.render(f'iterations: {self.iteration}', True, BLACK)
-        array_len = self.font.render(f'array len: {ARRAY_LEN}', True, BLACK)
+        title = self.font.render(f"{self.algorithm_state.title}", True, BLACK)
+        iterations = self.font.render(f"iterations: {self.iteration}", True, BLACK)
+        array_len = self.font.render(f"array len: {ARRAY_LEN}", True, BLACK)
         self.screen.blit(title, (20, 10))
         self.screen.blit(iterations, (20, 55))
         self.screen.blit(array_len, (20, 75))
@@ -44,12 +44,8 @@ class SortingAnimation:
                 pygame.quit()
 
     def run(self):
-
         while self.running:
             self.draw()
             self.txt_info()
             self.update()
             self.check_event()
-
-
-
